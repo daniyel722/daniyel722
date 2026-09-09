@@ -1,1 +1,222 @@
-\## Install Step To Step Write And Copy In the Terminal Ubuntu Server 26.04 Lts\# Install and updatesudo apt update \&\& sudo apt upgrade -y\# install apachesudo apt install apache2 -y\# Set the firewall for apache and enable firewallsudo ufw allow 'Apache Full'sudo ufw enablesudo ufw allow 443/tcpsudo ufw allow 80/tcp\## if use the ssh to connect the server add this\#    sudo ufw allow 22/tcp\## install SQLsudo apt install mysql-server -y\## for all question chose yes and enter or use the valiu\# set up sql securesudo mysql\_secure\_installation\## configuration sql for use in the wordpress core\##  use thesudo mysql\# and in  the open MySQL use this code step to stepCREATE DATABASE daniyaleradyzare\_db;                ## daniyaleradyzare\_db = Name your databaseCREATE USER 'daniyaleradyzare'@'localhost' IDENTIFIED BY 'D@ni123456';         ## daniyaleradyzare = Name user \& localhost = name hostname in the ubuntuserver  \&\& offter BY in the '  ' use the yourpassword&#x20;GRANT ALL PRIVILEGES ON daniyaleradyzare\_db.\* TO 'daniyaleradyzare'@'localhost';     ##  daniyaleradyzare = Name user \& localhost = name hostname in the ubuntuserverFLUSH PRIVILEGES;EXIT;\### now install thissudo apt install php libapache2-mod-php php-mysql php-gd php-xml php-mbstring php-curl php-zip php-imagick -y\## restart apache nowsudo systemctl restart apache2\# go this address path tmpcd /tmp\# download last wordpresswget https://wordpress.org/latest.tar.gz\# extract the wordpresstar -xzvf latest.tar.gz\# move the folder wordpresssudo mv wordpress /var/www/html/wordpress\#take the accesss for folderssudo chown -R www-data:www-data /var/www/html/wordpresssudo chmod -R 755 /var/www/html/wordpress\# now in the browser type : http://192.168.x.x/wordpress    your ip ubuntu server\#Database Name: daniyaleradyzare\_db\#Username: daniyaleradyzare\#Password: D@ni123456\#Host: localhost\## and click on  Run the installation\## now you must set un limited for upload the your wordpress temp use this codesudo nano /etc/php/8.3/apache2/php.ini\# by use the Ctrl + W   search in the nano and enterupload\_max\_filesize = 64Mpost\_max\_size = 64Mmemory\_limit = 256Mmax\_execution\_time = 300\## Ctrl + X     \& save\## need to reset apachesudo systemctl restart apache2sudo systemctl restart MySQL\## in the browser type Ip ubuntu server and name folder default is wordpress
+\## Install Step To Step Write And Copy In the Terminal Ubuntu Server 26.04 Lts
+
+
+
+\# Install and update
+
+
+
+sudo apt update \&\& sudo apt upgrade -y
+
+
+
+
+
+\# install apache
+
+
+
+sudo apt install apache2 -y
+
+
+
+
+
+\# Set the firewall for apache and enable firewall
+
+sudo ufw allow 'Apache Full'
+
+sudo ufw enable
+
+sudo ufw allow 443/tcp
+
+sudo ufw allow 80/tcp
+
+
+
+
+
+\## if use the ssh to connect the server add this
+
+\#    sudo ufw allow 22/tcp
+
+
+
+\## install SQL
+
+sudo apt install mysql-server -y
+
+
+
+\## for all question chose yes and enter or use the valiu
+
+
+
+
+
+
+
+\# set up sql secure
+
+sudo mysql\_secure\_installation
+
+
+
+
+
+\## configuration sql for use in the wordpress core
+
+\##  use the
+
+sudo mysql
+
+
+
+
+
+\# and in  the open MySQL use this code step to step
+
+
+
+CREATE DATABASE daniyaleradyzare\_db;                ## daniyaleradyzare\_db = Name your database
+
+
+
+
+
+CREATE USER 'daniyaleradyzare'@'localhost' IDENTIFIED BY 'D@ni123456';         ## daniyaleradyzare = Name user \& localhost = name hostname in the ubuntuserver  \&\& offter BY in the '  ' use the yourpassword
+
+
+
+&#x20;
+
+GRANT ALL PRIVILEGES ON daniyaleradyzare\_db.\* TO 'daniyaleradyzare'@'localhost';     ##  daniyaleradyzare = Name user \& localhost = name hostname in the ubuntuserver
+
+
+
+
+
+FLUSH PRIVILEGES;
+
+
+
+EXIT;
+
+
+
+
+
+\### now install this
+
+
+
+sudo apt install php libapache2-mod-php php-mysql php-gd php-xml php-mbstring php-curl php-zip php-imagick -y
+
+
+
+\## restart apache now
+
+
+
+sudo systemctl restart apache2
+
+
+
+
+
+\# go this address path tmp
+
+
+
+cd /tmp
+
+
+
+\# download last wordpress
+
+
+
+wget https://wordpress.org/latest.tar.gz
+
+
+
+\# extract the wordpress
+
+
+
+tar -xzvf latest.tar.gz
+
+
+
+\# move the folder wordpress
+
+
+
+sudo mv wordpress /var/www/html/wordpress
+
+
+
+\#take the accesss for folders
+
+
+
+sudo chown -R www-data:www-data /var/www/html/wordpress
+
+sudo chmod -R 755 /var/www/html/wordpress
+
+
+
+\# now in the browser type : http://192.168.x.x/wordpress    your ip ubuntu server
+
+
+
+\#Database Name: daniyaleradyzare\_db
+
+\#Username: daniyaleradyzare
+
+\#Password: D@ni123456
+
+\#Host: localhost
+
+
+
+\## and click on  Run the installation
+
+
+
+\## now you must set un limited for upload the your wordpress temp use this code  ### check what version php installed
+
+
+
+sudo nano /etc/php/8.5/apache2/php.ini
+
+
+
+\# by use the Ctrl + W   search in the nano and enter
+
+
+
+upload\_max\_filesize = 64M
+
+post\_max\_size = 64M
+
+memory\_limit = 256M
+
+max\_execution\_time = 300
+
+
+
+\## Ctrl + X     \& save
+
+
+
+\## need to reset apache
+
+sudo systemctl restart apache2
+
+sudo systemctl restart MySQL
+
+
+
+\## in the browser type Ip ubuntu server and name folder default is wordpress
+
